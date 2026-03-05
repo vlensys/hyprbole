@@ -27,6 +27,7 @@ all changes are backed up before writing.
 git clone https://github.com/yourname/hyprbole
 cd hyprbole
 chmod +x hyprbole.sh
+# optionally, add it to your PATH
 sudo cp hyprbole.sh /usr/local/bin/hyprbole
 ```
 
