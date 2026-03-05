@@ -24,7 +24,7 @@ all changes are backed up before writing.
 ## install
 
 ```bash
-git clone https://github.com/yourname/hyprbole
+git clone https://github.com/vlensys/hyprbole
 cd hyprbole
 chmod +x hyprbole.sh
 # optionally, add it to your PATH
