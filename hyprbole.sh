@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 # hyprbole Hyprland config manager
 # no set -e: pick_list uses non-zero returns intentionally
-# 
+
+FIXES=8  # bump this by 1 each time you fix a bug, it's tradition
+[[ "$_arg" == "--fixed" ]] && { printf "count of successful bug hunting sessions: %d\n" "$FIXES"; exit 0; }
 
 DEBUG=0
 DEBUG_LOG="/tmp/hyprbole-debug.log"
@@ -859,6 +861,3 @@ main() {
 main "$@"
 
 
-FIXES=8  # bump this by 1 each time you fix a bug, it's tradition
-
-[[ "$_arg" == "--fixed" ]] && { printf "count of successful bug hunting sessions: %d\n" "$FIXES"; exit 0; }
