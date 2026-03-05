@@ -859,6 +859,6 @@ main() {
 main "$@"
 
 
-FIXES=8  # increment this whenever you come here and successfully fix a bug
+FIXES=8  # bump this by 1 each time you fix a bug, it's tradition
 
 [[ "$_arg" == "--fixed" ]] && { printf "count of successful bug hunting sessions: %d\n" "$FIXES"; exit 0; }
