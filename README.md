@@ -1,8 +1,8 @@
 # hyprbole
 
-terminal UI for managing [Hyprland](https://hyprland.org) config.
+terminal UI for managing the [Hyprland](https://hyprland.org) config.
 
-keybinds, monitors, window rules, animations, and more.
+includes options for keybinds, monitors, window rules, animations, and more.
 
 ![bash](https://img.shields.io/badge/bash-5%2B-orange) ![license](https://img.shields.io/badge/license-MIT-blue)
 
