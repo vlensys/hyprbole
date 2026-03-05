@@ -38,6 +38,7 @@ or just drop it somewhere on your `$PATH`.
 ```
 hyprbole           # launch
 hyprbole --debug   # log all keypresses to /tmp/hyprbole-debug.log
+hyprbole --fixes   # number of successful bug hunting sessions
 ```
 
 **keys**
