@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-# hyprbole — Hyprland config manager
+# hyprbole Hyprland config manager
 # no set -e: pick_list uses non-zero returns intentionally
+# 
 
 DEBUG=0
 DEBUG_LOG="/tmp/hyprbole-debug.log"
@@ -57,7 +58,7 @@ draw_footer() {
     printf "${MUTED}  ↑↓ move  enter select  n add  d del  q back${R}\n"
 }
 
-# ── config ────────────────────────────────────────────────
+# config
 
 init_config() {
     mkdir -p "$HYPR_DIR"
@@ -150,14 +151,14 @@ cancelled()  { [[ $CANCELLED -eq 1 ]]; }
 
 flush_stdin() {
     local _j _n=0
-    # 100ms timeout — long enough to catch rapid key spam
+    # 100ms timeout, long enough to catch rapid key spam
     while IFS= read -rsn1 -t 0.1 _j 2>/dev/null < /dev/tty; do
         dbg_key "flush[$_n]" "$_j"; (( _n++ ))
     done
     dbg "flush drained $_n"
 }
 
-# ── pick_list ─────────────────────────────────────────────
+# pick_list
 # sets PICK_ACTION, PICKED_IDX, PICKED_VAL
 pick_list() {
     local title="$1"; shift
@@ -222,8 +223,8 @@ pick_list() {
     done
 }
 
-# ── prompt_input ──────────────────────────────────────────
-# NEVER call inside $() — sets INPUT_RESULT and CANCELLED directly
+# prompt input
+# NEVER call inside $() — sets INPUT_RESULT and CANCELLED directly, otherwise you're gonna get TONS of errors!
 # usage:
 #   prompt_input "label" "default"
 #   cancelled && { msg_cancel; return; }
@@ -264,7 +265,7 @@ prompt_input() {
     INPUT_RESULT="$acc"
 }
 
-# ── prompt_select ─────────────────────────────────────────
+# prompt select
 # sets PSEL_RESULT and CANCELLED
 prompt_select() {
     local label="$1"; shift
@@ -335,7 +336,7 @@ edit_line() {
     msg_ok "Updated."
 }
 
-# ── keybinds ──────────────────────────────────────────────
+# keybinds
 
 section_keybinds() {
     while true; do
@@ -387,7 +388,7 @@ edit_keybind() {
     msg_ok "Updated."
 }
 
-# ── monitors ──────────────────────────────────────────────
+# monitors
 
 section_monitors() {
     while true; do
@@ -427,7 +428,7 @@ add_monitor() {
     msg_ok "Added: $line"
 }
 
-# ── workspaces ────────────────────────────────────────────
+# workspaces
 
 section_workspaces() {
     while true; do
@@ -540,7 +541,7 @@ add_windowrule() {
     msg_ok "Added: $line"
 }
 
-# ── general ───────────────────────────────────────────────
+# general
 
 section_general() {
     draw_header "GENERAL" "gaps, borders, layout"
@@ -610,7 +611,7 @@ section_decoration() {
     msg_ok "Saved."
 }
 
-# ── animations ────────────────────────────────────────────
+# animations
 
 section_animations() {
     draw_header "ANIMATIONS" "preset or custom bezier"
@@ -664,7 +665,7 @@ $inner
     msg_ok "Saved ($preset)."
 }
 
-# ── input ─────────────────────────────────────────────────
+# input
 
 section_input() {
     draw_header "INPUT" "keyboard, mouse, touchpad"
@@ -701,7 +702,7 @@ section_input() {
     msg_ok "Saved."
 }
 
-# ── misc ──────────────────────────────────────────────────
+# misc
 
 section_misc() {
     draw_header "MISC" "vrr, dpms, logo, splash"
@@ -723,7 +724,7 @@ section_misc() {
     msg_ok "Saved."
 }
 
-# ── autostart ─────────────────────────────────────────────
+# autostart
 
 section_exec() {
     while true; do
@@ -748,7 +749,7 @@ section_exec() {
     done
 }
 
-# ── env vars ──────────────────────────────────────────────
+# env vars
 
 section_env() {
     while true; do
@@ -774,7 +775,7 @@ section_env() {
     done
 }
 
-# ── reload / view ─────────────────────────────────────────
+# reload / view
 
 do_reload() {
     draw_header "reload" ""; printf "\n"
@@ -796,7 +797,7 @@ view_raw() {
     printf "\n${MUTED}  press any key...${R}"; IFS= read -rsn1 < /dev/tty
 }
 
-# ── main menu ─────────────────────────────────────────────
+# main menu!!!
 
 main_menu() {
     local -a menu=(
@@ -843,7 +844,7 @@ main_menu() {
     done
 }
 
-# ── entry ─────────────────────────────────────────────────
+# entries (im finally done)
 
 main() {
     (( BASH_VERSINFO[0] < 4 )) && { printf "bash 4+ required\n" >&2; exit 1; }
@@ -856,3 +857,8 @@ main() {
 }
 
 main "$@"
+
+
+FIXES=8  # increment this whenever you come here and successfully fix a bug
+
+[[ "$_arg" == "--fixed" ]] && { printf "count of successful bug hunting sessions: %d\n" "$FIXES"; exit 0; }
