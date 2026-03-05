@@ -2,7 +2,7 @@
 # hyprbole Hyprland config manager
 # no set -e: pick_list uses non-zero returns intentionally
 
-FIXES=3
+FIXES=4
 for _arg in "$@"; do
     [[ "$_arg" == "--fixes" ]] && { printf "successful bug hunting sessions: %d\n" "$FIXES"; exit 0; }
 done
